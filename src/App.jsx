@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
 import Board from './components/Board'
 import KeyBoard from './components/KeyBoard'
+import TestCounter from './components/TestCounter'
+
 import './App.css'
 
 function App() {
@@ -12,6 +10,7 @@ function App() {
     <>
     <Board/>
     <KeyBoard/>
+    <TestCounter/>
     </>
   )
 }
