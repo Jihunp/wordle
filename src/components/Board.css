@@ -1,0 +1,27 @@
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  height:auto;
+  width: auto;
+}
+
+.square {
+  margin: 2px;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  color: black;
+}
+
+.border-box {
+  border: 2px solid #000;
+}
+
+.txt-color-black {
+  color: black;
+}
+
+.bg-red {
+  background-color: red;
+}
