@@ -1,0 +1,47 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mx-top {
+  margin-top: 60px;
+}
+
+.mx-auto {
+  margin: auto;
+}
+
+.keyboard-row {
+  display: flex;
+}
+
+.key {
+  margin: 5px; /* Adjust margin between keys */
+  padding: 40px; /* Adjust padding inside keys */
+  border: 1px solid #ccc; /* Add border to keys */
+  cursor: pointer;
+}
+
+.font-small {
+  font-size: 0.875rem; /* Example size for small font */
+}
+
+.font-medium {
+  font-size: 1rem; /* Example size for medium font */
+}
+
+.font-large {
+  font-size: 1.25rem; /* Example size for large font */
+}
+
+.active {
+  background-color: #007bff;
+  color: #fff;
+}
+.not-active {
+  background-color: #fff;
+  color:#007bff;
+}
+

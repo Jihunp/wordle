@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./KeyBoard.css"
 
 const KeyBoard = () => {
   const [keysPressed, setKeysPressed] = useState([]);
@@ -13,20 +14,22 @@ const KeyBoard = () => {
   };
 
   return (
-    <div className="keyboard">
-      {keyBoardLayout.map((row, rowIndex) => (
-        <div key={rowIndex} className="keyboard-row">
-          {row.map((key, colIndex) => (
-            <div
+    <div className="txt-center mx-top">
+      <div className="keyboard font-large">
+        {keyBoardLayout.map((row, rowIndex) => (
+          <div key={rowIndex} className="keyboard-row ">
+            {row.map((key, colIndex) => (
+              <div
               key={colIndex}
               className={`key ${keysPressed.includes(key) ? 'active' : ''}`}
               onClick={() => handlePress(key)}
-            >
-              {key}
-            </div>
-          ))}
-        </div>
-      ))}
+              >
+                {key}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
   

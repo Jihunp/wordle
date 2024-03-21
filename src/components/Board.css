@@ -1,22 +1,27 @@
 .flex-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; 
   background-color: white;
-  height:auto;
-  width: auto;
+  text-align: center;
 }
 
 .square {
+  width: 100px;
+  height: 100px;
   margin: 2px;
   padding: 2.5rem;
   box-sizing: border-box;
   color: black;
 }
 
-
 .border-box {
   border: 2px solid #000;
+}
+
+.txt-center {
+  text-align: center;
 }
 
 .txt-color-black {
