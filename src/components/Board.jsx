@@ -1,5 +1,4 @@
-
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Board.css";
 
 const Board = () => {
@@ -11,6 +10,12 @@ const Board = () => {
   const initialBoxLetters = Array(numRows).fill(Array(numCols).fill(""));
   const [boxContents, setBoxContents] = useState(initialBoxLetters);
 
+  useEffect(() => {
+    // Focus on the first input box when the component mounts
+    if (inputRef.current[0] && inputRef.current[0][0]) {
+      inputRef.current[0][0].focus();
+    }
+  }, []);
 
   const handleKeyPress = (e, rowIndex, colIndex) => {
     const newBoxLetters = JSON.parse(JSON.stringify(boxContents));
