@@ -3,8 +3,12 @@ export const isRowFilled = (boxContents, rowIndex) => {
   return isFilled;
 };
 
-export const isGuessCorrect = (currentGuess) => {
-  console.log("this is called")
+export const isGuessCorrect = (currentGuess, stats) => {
+  stats.guess = currentGuess;
+  if(currentGuess === stats.correctGuess) {
+    console.log(stats.correctGuess)
+    console.log(stats.guess)
+  }
   return true;
 }
 

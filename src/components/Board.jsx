@@ -34,12 +34,13 @@ const Board = () => {
         setCurrentRow((prevRow) => prevRow + 1);
 
         //api call
-        let currentGuess = GameStats.guess;
+        let currentGuess = "";
         currentGuess = boxContents[currentRow].join('').toLowerCase();
 
+        // if guess is correct then it changes the boxes with the letters to green
         //if the guesss is correct then it does an action
-        if(isGuessCorrect(currentGuess)) {
-          console.log("you are correct")
+        if(isGuessCorrect(currentGuess, GameStats)) {
+          console.log(currentGuess)
         }
 
 
