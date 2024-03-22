@@ -11,9 +11,7 @@ const Board = () => {
 
   const initialBoxLetters = Array(numRows).fill(Array(numCols).fill(""));
   const [boxContents, setBoxContents] = useState(initialBoxLetters);
-  const [word, setWord] = useState("");
-  //if enter is pressed then the word will be set as the current row's word
-  // then it would be checked to see what row it fits into
+  const [currentRow, setCurrentRow] = useState(0);
 
   useEffect(() => {
     // Focus on the first input box when the component mounts
@@ -21,31 +19,17 @@ const Board = () => {
       inputRef.current[0][0].focus();
     }
   }, []);
-  
-  // Perform actions when the row is filled and Enter is pressed
-  const handleEnter = () => {
-    if (isRowFilled(boxContents, numRows)) {
-      console.log("COCONUTS")
-      console.log("Row is filled");
-    } else {
-      console.log("Row is not filled");
-    }
-  }
 
-  // useEffect(() => {
-  //   console.log(boxContents);
-  // }, [boxContents]);
-  console.log(boxContents);
+
   const handleKeyDown = (e, rowIndex, colIndex) => {
     handleKeyPress(boxContents, setBoxContents, rowIndex, colIndex, inputRef, numCols, e);
     if (e.key === "Enter") {
-      handleEnter();
+      if(isRowFilled(boxContents, currentRow)) {
+        setCurrentRow((prevRow) => prevRow + 1);
+      }
     }
   };
 
-  //create a function that would check if the row is filled
-  // if the row is filled then click enter is clickable
-  // if enter is clicked then 
 
   return (
     <div>
@@ -71,6 +55,7 @@ const Board = () => {
           ))}
         </div>
       ))}
+      <p>Current Row: {currentRow}</p> {/* Display the current row */}
     </div>
   );
 };

@@ -1,18 +1,11 @@
-
-// this function tneeds to be redone or sent different parameters
-// maybe store the word in an array and send it here once enter is
-// pressed
 export const isRowFilled = (boxContents, rowIndex) => {
-  console.log("BANANAS");
-  const row = boxContents[rowIndex]; // Get the row array
-  const isFilled = row.every((char) => char !== ""); // Check if every box in the row is filled
-  return isFilled; // Return whether the row is filled or not
+  const isFilled = boxContents[rowIndex].every((char) => char != "");
+  return isFilled;
 };
 
 export const handleKeyPress = (boxContents, setBoxContents, rowIndex, colIndex, inputRef, numCols, e) => {
     const newBoxLetters = JSON.parse(JSON.stringify(boxContents));
     const inputChar = e.key.toUpperCase();
-
 
     // Handle Backspace
     if (inputChar === "BACKSPACE") {
