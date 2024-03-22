@@ -16,6 +16,11 @@ const Board = () => {
       inputRef.current[0][0].focus();
     }
   }, []);
+  
+  //create a function that would check if the row is filled
+  // if the row is filled then click enter is clickable
+  // if enter is clicked then 
+
 
   const handleKeyPress = (e, rowIndex, colIndex) => {
     const newBoxLetters = JSON.parse(JSON.stringify(boxContents));
