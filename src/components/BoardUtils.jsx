@@ -3,6 +3,11 @@ export const isRowFilled = (boxContents, rowIndex) => {
   return isFilled;
 };
 
+export const isGuessCorrect = (currentGuess) => {
+  console.log("this is called")
+  return true;
+}
+
 export const handleKeyPress = (boxContents, setBoxContents, rowIndex, colIndex, inputRef, numCols, e) => {
     const newBoxLetters = JSON.parse(JSON.stringify(boxContents));
     const inputChar = e.key.toUpperCase();
@@ -26,5 +31,4 @@ export const handleKeyPress = (boxContents, setBoxContents, rowIndex, colIndex, 
         if (nextInput) nextInput.focus();
       }
     }
-
   };

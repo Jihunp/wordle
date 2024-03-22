@@ -1,7 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import "./Board.css";
+import { isRowFilled, handleKeyPress, isGuessCorrect } from "./BoardUtils";
 
-import { isRowFilled, handleKeyPress } from "./BoardUtils";
+const GameStats = {
+  guess: "",
+  correctGuess: "hello",
+}
+
 
 const Board = () => {
   const numRows = 6;
@@ -24,8 +29,21 @@ const Board = () => {
   const handleKeyDown = (e, rowIndex, colIndex) => {
     handleKeyPress(boxContents, setBoxContents, rowIndex, colIndex, inputRef, numCols, e);
     if (e.key === "Enter") {
+      //if row was filled then it would activate a guess
       if(isRowFilled(boxContents, currentRow)) {
         setCurrentRow((prevRow) => prevRow + 1);
+
+        //api call
+        let currentGuess = GameStats.guess;
+        currentGuess = boxContents[currentRow].join('').toLowerCase();
+
+        //if the guesss is correct then it does an action
+        if(isGuessCorrect(currentGuess)) {
+          console.log("you are correct")
+        }
+
+
+        console.log(GameStats)
       }
     }
   };
