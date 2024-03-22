@@ -9,6 +9,7 @@ const KeyBoard = () => {
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
     ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Delete']
   ];
+
   const handlePress = (key) => {
     setKeysPressed([...keysPressed, key])
   };
@@ -21,8 +22,9 @@ const KeyBoard = () => {
             {row.map((key, colIndex) => (
               <div
               key={colIndex}
-              className={`key ${keysPressed.includes(key) ? 'active' : ''}`}
+              className={`key ${keysPressed.includes(key) ? 'active' : 'not-active'}`}
               onClick={() => handlePress(key)}
+              onKeyDown={() => handlePress(key)}
               >
                 {key}
               </div>

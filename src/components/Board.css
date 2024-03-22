@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   background-color: white;
   text-align: center;
 }
@@ -30,4 +30,8 @@
 
 .bg-red {
   background-color: red;
+}
+
+.font-large {
+  font-size: 1.25rem; /* Example size for large font */
 }
