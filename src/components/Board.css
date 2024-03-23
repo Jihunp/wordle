@@ -8,12 +8,16 @@
 }
 
 .square {
-  width: 100px;
-  height: 100px;
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
   margin: 2px;
-  padding: 2.5rem;
+  padding: 0; /* Remove padding to ensure text is centered */
   box-sizing: border-box;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
 }
 
 .border-box {
