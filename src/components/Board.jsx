@@ -37,7 +37,7 @@ const Board = () => {
     // if the 
   };
 
-  const isCorrectLetter = (currentGuess, currentRow, correctGuess) => {
+  const isCorrectLetter = (boxContents, currentGuess, currentRow, correctGuess) => {
     //get the guess 
     console.log("correct guess estimate in correctLEtte function");
     console.log(correctGuess);
@@ -47,8 +47,6 @@ const Board = () => {
     const newCorrectLetters = [...correctLetters]; // Create a copy of correctLetters state
 
     for (let i = 0; i < numCols; i++) {
-      //correctLetters[currentRow][i];
-      //if the value of this column is 
       if (correctGuessLetters.includes(currentGuess[i])) {
         newCorrectLetters[currentRow][i] = true; // Mark the correct letter as true
         foundCorrectLetter = true;
@@ -82,7 +80,7 @@ const Board = () => {
         const savedGuess = boxContents[currentRow];
         let currentGuess = savedGuess.join("").toLowerCase();
 
-        isCorrectLetter(currentGuess, currentRow, GameStats.correctGuess);
+        isCorrectLetter(boxContents, currentGuess, currentRow, GameStats.correctGuess);
 
         // change focus to the next row
         const nextRow = currentRow + 1;
