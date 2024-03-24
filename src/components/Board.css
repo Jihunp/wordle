@@ -8,8 +8,8 @@
 }
 
 .square {
-  width: 40px; /* Adjust width as needed */
-  height: 40px; /* Adjust height as needed */
+  width: 5em; /* Adjust width as needed */
+  height: 5em; /* Adjust height as needed */
   margin: 2px;
   padding: 0; /* Remove padding to ensure text is centered */
   box-sizing: border-box;
@@ -18,6 +18,11 @@
   justify-content: center;
   align-items: center;
   border: 2px solid #000;
+}
+
+.correct-letter {
+  background-color: yellow;
+
 }
 
 .border-box {

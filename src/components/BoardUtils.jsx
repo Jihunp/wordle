@@ -3,11 +3,9 @@ export const isRowFilled = (boxContents, rowIndex) => {
   return isFilled;
 };
 
-export const isGuessCorrect = (currentGuess, stats) => {
-  stats.guess = currentGuess;
-  if (currentGuess === stats.correctGuess) {
-    console.log(stats.correctGuess);
-    console.log(stats.guess);
+export const isGuessCorrect = (currentGuess, correctGuess) => {
+  if (currentGuess === correctGuess) {
+    console.log("THIS IS CORRECT")
   }
   return true;
 };

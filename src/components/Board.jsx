@@ -16,7 +16,9 @@ const Board = () => {
   const initialBoxLetters = Array(numRows).fill(Array(numCols).fill(""));
   const [boxContents, setBoxContents] = useState(initialBoxLetters);
   const [currentRow, setCurrentRow] = useState(0);
-  const [finalizedRow, setFinalizedRow] = useState(Array(numRows).fill(false))
+  const [finalizedRow, setFinalizedRow] = useState(Array(numRows).fill(false));
+  const [correctLetters, setCorrectLetters] = useState(Array(numCols).fill(false));
+  const [guess, setGuess] = useState([]);
 
   useEffect(() => {
     // Focus on the first input box when the component mounts
@@ -25,22 +27,7 @@ const Board = () => {
     }
   }, []);
 
-  //take in the guess array
-  // const correctLetterPosition = (boxContents, GameStats.correctGuess) => {
-  //   //check every letter in correct guess
-  //   //check every letter in boxContents[currentRow]
-  //   //if the letter of the gamestats and letter of boxContents are a match
-  //   // then turn the letter color green and otherwise turn it 
 
-  //   // also have to add functionality. if a word is entered then the row state is
-  //   // saved and cannot be removed.. maybe work on that first
-  //   if(boxContents[currentRow])
-
-  // };
-
-  // const correctLetterWrongPositionr = () => {
-    
-  // };
 
   const handleKeyDown = (e, rowIndex, colIndex) => {
     handleKeyPress(
@@ -69,26 +56,36 @@ const Board = () => {
           if(nextInput) nextInput.focus();
         }
 
-        //
-        let currentGuess = "";
-        currentGuess = boxContents[currentRow].join("").toLowerCase();
 
-        // setBoxContents[cu]
+        // let correctGuess = GameStats.correctGuess;
+        let currentGuess = boxContents[currentRow].join("").toLowerCase();
+        // let arrayGuess = boxContents[currentRow].toLowerCase();
 
-        // if enter is pressed setBoxcontents[currentRow] as the state
-        // make that state unchangeable.
+        setGuess(currentGuess);
+        console.log("this is the guess")
+        console.log(currentGuess);
 
-        // if guess is correct setBox contents[currentRow]
-        // 
+        const isCorrectLetter = (currentGuess) => {
+          const correctGuessLetters = GameStats.correctGuess.split('');
+          const newCorrectLetters = [...correctLetters]; // Create a copy of correctLetters state
+        
+          for (let i = 0; i < numCols; i++) {
+            if (correctGuessLetters.includes(currentGuess[i])) {
+              newCorrectLetters[i] = true; // Mark the correct letter as true
+            }
+          }
+        
+          setCorrectLetters(newCorrectLetters); // Update correctLetters state
+        };
+        isCorrectLetter(currentGuess);
 
-        // if guess is correct then it changes the boxes with the letters to green
-        //if the guesss is correct then it does an action
-        // if row is filled and enter is pressed then the board will save the guess
-        // as a state called guess on the row line. 
-        // mostlikely using state
-        if (isGuessCorrect(currentGuess, GameStats)) {
-          console.log(currentGuess);
-        }
+        //need to change this funciton
+        // if (isGuessCorrect(currentGuess, correctGuess)) {
+        //   setGuess(currentGuess);
+        //   console.log(...guess);
+        // } else {
+        //   isCorrectLetter();
+        // }
 
         console.log(GameStats);
       }
@@ -102,9 +99,8 @@ const Board = () => {
         <div className="flex-container" key={rowIndex}>
           {range(numCols).map((colIndex) => (
             <div
-              className={`square border-box font-large ${
-                finalizedRow[rowIndex] ? "finalized" : ""
-              }`}
+              className={`square border-box font-large
+              ${correctLetters[colIndex] && currentRow === rowIndex ? "correct-letter" : ""}`}
               key={colIndex}
               onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
               ref={(el) => {
