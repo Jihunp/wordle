@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect} from "react";
 import "./Board.css";
-import { isRowFilled, handleKeyPress } from "./BoardUtils";
+import {isRowFilled, handleKeyPress, countLetters} from "./BoardUtils";
 
 const initialBoxLetters = Array(6).fill(Array(5).fill(""));
 
@@ -45,44 +45,33 @@ const Board = () => {
     }
   };
 
-
   const isCorrectLetter = (currentGuess) => {
+
     const correctGuess = "hello";
     const correctArray = correctGuess.split("");
     const guessArray = currentGuess.split("");
-  
+
     const correctPositions = new Set();
-    const wrongPositions = new Set();
-    const temp = [];
-  
-    // Find correct letters in the right position
+    const correctL = [];
+
+    // Count the occurrences of each letter in the correct guess and the current guess
+    const correctLetterCounts = countLetters(correctGuess);
+    const guessLetterCounts = countLetters(currentGuess);
+
+    // Iterate over each letter in the guess
     guessArray.forEach((letter, i) => {
       if (correctArray[i] === letter) {
-        correctPositions.add(i);
-      }
-    });
-  
-    // Find correct letters in wrong positions
-    guessArray.forEach((letter, i) => {
-      if (!correctPositions.has(i) && correctArray.includes(letter)) {
-        wrongPositions.add(i);
-        temp.push(i);
-        console.log(...temp);
-      }
-    });
-  
-    // Update boxContents and visuals
-    // const updatedBoxContents = [...boxContents];
-    guessArray.forEach((letter, i) => {
-      if (correctPositions.has(i)) {
-        // updatedBoxContents[currentRow][i] = letter.toUpperCase();
+        // If the letter is in the correct position, mark it as green
         inputRef.current[currentRow][i].classList.add("bg-green");
-      } else if (wrongPositions.has(i)) {
-        //and the number of letters
+        correctPositions.add(i); // Remember correct positions
+        correctL.push(letter);
+      }
+
+      if (guessLetterCounts[letter] && guessLetterCounts[letter]<= correctLetterCounts[letter]) {
+        // If the letter is in the correct word and the count matches, mark it as yellow
         inputRef.current[currentRow][i].classList.add("bg-yellow");
       }
     });
-    // setBoxContents(updatedBoxContents);
   };
 
   const focusNextRow = () => {
@@ -97,9 +86,9 @@ const Board = () => {
   return (
     <div>
       <h1 className="txt-color-black txt-center">Wordle</h1>
-      {Array.from({ length: numRows }).map((_, rowIndex) => (
+      {Array.from({length: numRows}).map((_, rowIndex) => (
         <div className="flex-container" key={rowIndex}>
-          {Array.from({ length: numCols }).map((_, colIndex) => (
+          {Array.from({length: numCols}).map((_, colIndex) => (
             <div
               className="square border-box font-large"
               key={colIndex}
@@ -108,8 +97,7 @@ const Board = () => {
                 inputRef.current[rowIndex] ||= [];
                 inputRef.current[rowIndex][colIndex] = el;
               }}
-              tabIndex={0}
-            >
+              tabIndex={0}>
               {boxContents[rowIndex][colIndex]}
             </div>
           ))}
