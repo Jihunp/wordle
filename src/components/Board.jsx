@@ -39,39 +39,39 @@ const Board = () => {
         const savedGuess = boxContents[currentRow];
         const currentGuess = savedGuess.join("").toLowerCase();
 
-        isCorrectLetter(currentGuess);
+        isCorrectLetter(currentGuess)
         focusNextRow();
       }
     }
   };
 
   const isCorrectLetter = (currentGuess) => {
-
     const correctGuess = "hello";
-    const correctArray = correctGuess.split("");
-    const guessArray = currentGuess.split("");
+    const correctArray = [...correctGuess];
+    const guessArray = [...currentGuess];
 
+    const letterMapCounts = countLetters(correctGuess);
+    
+    // Set to store correct positions
     const correctPositions = new Set();
-    const correctL = [];
-
-    // Count the occurrences of each letter in the correct guess and the current guess
-    const correctLetterCounts = countLetters(correctGuess);
-    const guessLetterCounts = countLetters(currentGuess);
-
-    // Iterate over each letter in the guess
+  
+    // Iterate over guessArray to find correct positions and mark them as green
     guessArray.forEach((letter, i) => {
       if (correctArray[i] === letter) {
-        // If the letter is in the correct position, mark it as green
+        correctPositions.add(i);
         inputRef.current[currentRow][i].classList.add("bg-green");
-        correctPositions.add(i); // Remember correct positions
-        correctL.push(letter);
-      }
-
-      if (guessLetterCounts[letter] && guessLetterCounts[letter]<= correctLetterCounts[letter]) {
-        // If the letter is in the correct word and the count matches, mark it as yellow
-        inputRef.current[currentRow][i].classList.add("bg-yellow");
+        letterMapCounts[letter]--; // if letter is considered green decrement letter count
       }
     });
+    
+    // Iterate over guessArray to mark correct letters in wrong positions as yellow
+    guessArray.forEach((letter, i) => {
+      if (!correctPositions.has(i) && letterMapCounts[letter] > 0) {
+        inputRef.current[currentRow][i].classList.add("bg-yellow");
+        letterMapCounts[letter]--; // Reduce letter count
+      }
+    });
+    
   };
 
   const focusNextRow = () => {
