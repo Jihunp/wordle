@@ -8,8 +8,8 @@
 }
 
 .square {
-  width: 40px; /* Adjust width as needed */
-  height: 40px; /* Adjust height as needed */
+  width: 5em; /* Adjust width as needed */
+  height: 5em; /* Adjust height as needed */
   margin: 2px;
   padding: 0; /* Remove padding to ensure text is centered */
   box-sizing: border-box;
@@ -36,6 +36,14 @@
   background-color: red;
 }
 
+.bg-yellow {
+  background-color: yellow;
+  transition: background-color 0.5s ease;
+}
+.bg-green {
+  background-color: green;
+  transition: background-color 0.5s ease;
+}
 .font-large {
   font-size: 1.25rem; /* Example size for large font */
 }

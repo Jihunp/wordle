@@ -3,13 +3,23 @@ export const isRowFilled = (boxContents, rowIndex) => {
   return isFilled;
 };
 
-export const isGuessCorrect = (currentGuess, stats) => {
-  stats.guess = currentGuess;
-  if (currentGuess === stats.correctGuess) {
-    console.log(stats.correctGuess);
-    console.log(stats.guess);
+export const isGuessCorrect = (currentGuess, correctGuess) => {
+  if (currentGuess === correctGuess) {
+    console.log("THIS IS CORRECT");
   }
   return true;
+};
+
+export const countLetters = (word) => {
+  const letterCounts = new Map();
+
+  for (const letter of word.toLowerCase()) {
+    if (/[a-z]/.test(letter)) {
+      letterCounts.set(letter, (letterCounts.get(letter) || 0) + 1);
+    }
+  }
+
+  return Object.fromEntries(letterCounts);
 };
 
 export const handleKeyPress = (
@@ -25,12 +35,12 @@ export const handleKeyPress = (
   const newBoxLetters = JSON.parse(JSON.stringify(boxContents));
   const inputChar = e.key.toUpperCase();
 
-    // Check if the row is finalized
-    if (finalizedRow[rowIndex]) {
-      // If the row is finalized, prevent any changes
-      e.preventDefault();
-      return;
-    }
+  // Check if the row is finalized
+  if (finalizedRow[rowIndex]) {
+    // If the row is finalized, prevent any changes
+    e.preventDefault();
+    return;
+  }
 
   // Handle Backspace
   if (inputChar === "BACKSPACE") {
