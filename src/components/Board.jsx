@@ -17,13 +17,11 @@ const Board = () => {
   const [boxContents, setBoxContents] = useState(initialBoxLetters);
   const [currentRow, setCurrentRow] = useState(0);
   const [finalizedRow, setFinalizedRow] = useState(Array(numRows).fill(false));
+
   // const [correctLetters, setCorrectLetters] = useState(
-  //   Array(numCols).fill(false)
+  //   Array(numRows).fill(Array(numCols).fill(false))
   // );
-  const [correctLetters, setCorrectLetters] = useState(
-    Array(numRows).fill(Array(numCols).fill(false))
-  );
-  const [className, setClassName] = useState("initial-class");
+  // const [className, setClassName] = useState("initial-class");
 
     useEffect(() => {
       // Focus on the first input box when the component mounts
@@ -32,30 +30,29 @@ const Board = () => {
       }
     }, []);
 
-  const changeClassName = () => {
-    setClassName("correct-letter");
-    // if the 
-  };
 
   const isCorrectLetter = (boxContents, currentGuess, currentRow, correctGuess) => {
-    //get the guess 
-    console.log("correct guess estimate in correctLEtte function");
-    console.log(correctGuess);
+    // Split correct and guessed guesses into arrays
+    const correctArray = correctGuess.split('');
+    const guessArray = currentGuess.split('');
 
-    const correctGuessLetters = GameStats.correctGuess.split("");
-    let foundCorrectLetter = false;
-    const newCorrectLetters = [...correctLetters]; // Create a copy of correctLetters state
+    // Iterate through each letter in the guess array
+    guessArray.forEach((letter, i) => {
+      // If the guessed letter is correct in position, update state and visuals
+      if (correctArray[i] === letter) {
+        const updatedBoxContents = [...boxContents];
+        updatedBoxContents[currentRow][i] = letter.toUpperCase(); // Update guessed letter
+        setBoxContents(updatedBoxContents);
+        inputRef.current[currentRow][i].classList.add("bg-green");
+      }
+    });
 
-    for (let i = 0; i < numCols; i++) {
-      if (correctGuessLetters.includes(currentGuess[i])) {
-        newCorrectLetters[currentRow][i] = true; // Mark the correct letter as true
-        foundCorrectLetter = true;
-      }
-      if (foundCorrectLetter) {
-        inputRef.current[currentRow][i].classList.add("correct-letter");
-      }
-    }
-    setCorrectLetters(newCorrectLetters); // Update correctLetters state
+    // correctArray.forEach((letter, i) => {
+    //   if(guessArray[i].includes(letter)) {
+    //     inputRef.current[currentRow][i].classList.add("bg-yellow");
+    //   }
+    // });
+
   };
 
 
@@ -101,7 +98,8 @@ const Board = () => {
           {range(numCols).map((colIndex) => (
             <div
               className={`square border-box font-large
-              ${className}`}
+              `}
+              // ${className}
               key={colIndex}
               onKeyDown={
                 (e) =>  {

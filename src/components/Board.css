@@ -20,7 +20,7 @@
   border: 2px solid #000;
 }
 
-.correct-letter {
+.bg-yellow {
   background-color: yellow;
 
 }
@@ -41,6 +41,9 @@
   background-color: red;
 }
 
+.bg-green {
+  background-color: green;
+}
 .font-large {
   font-size: 1.25rem; /* Example size for large font */
 }
