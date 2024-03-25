@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import {useState, useRef, useEffect} from "react";
 import "./Board.css";
 import {isRowFilled, handleKeyPress, countLetters} from "./BoardUtils";
 
@@ -46,6 +46,7 @@ const Board = () => {
   };
 
   const isCorrectLetter = (currentGuess) => {
+
     const correctGuess = "hello";
     const correctArray = [...correctGuess];
     const guessArray = [...currentGuess];
@@ -90,7 +91,7 @@ const Board = () => {
         <div className="flex-container" key={rowIndex}>
           {Array.from({length: numCols}).map((_, colIndex) => (
             <div
-              className="square border-box font-large"
+              className={`square border-box font-large `}
               key={colIndex}
               onKeyDown={(e) => handleEnter(e, rowIndex, colIndex)}
               ref={(el) => {

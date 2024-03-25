@@ -20,11 +20,6 @@
   border: 2px solid #000;
 }
 
-.bg-yellow {
-  background-color: yellow;
-
-}
-
 .border-box {
   border: 2px solid #000;
 }
@@ -41,8 +36,13 @@
   background-color: red;
 }
 
+.bg-yellow {
+  background-color: yellow;
+  transition: background-color 0.5s ease;
+}
 .bg-green {
   background-color: green;
+  transition: background-color 0.5s ease;
 }
 .font-large {
   font-size: 1.25rem; /* Example size for large font */
