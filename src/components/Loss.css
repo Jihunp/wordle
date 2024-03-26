@@ -1,0 +1,16 @@
+.loss-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  width: 50vw;
+  height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: black;
+  background-color: grey;
+  border-radius: 5%;
+}

@@ -11,13 +11,6 @@ export const getRandomWord = () => {
   return db[randomIndex];
 };
 
-export const isGuessCorrect = (currentGuess, correctGuess) => {
-  if (currentGuess === correctGuess) {
-    console.log("THIS IS CORRECT");
-  }
-  return true;
-};
-
 export const countLetters = (word) => {
   const letterCounts = new Map();
 

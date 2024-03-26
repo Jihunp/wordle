@@ -7,10 +7,9 @@ import {
   getRandomWord,
 } from "./BoardUtils";
 
-
-import Confetti from 'react-confetti';
-import Celebration from "./Celebration";
 import KeyBoard from "./KeyBoard";
+import Celebration from "./Celebration";
+import Loss from "./Loss";
 
 const initialBoxLetters = Array(6).fill(Array(5).fill(""));
 
@@ -24,6 +23,7 @@ const Board = () => {
   const [finalizedRow, setFinalizedRow] = useState(Array(numRows).fill(false));
   const [randomWord, setRandomWord] = useState("");
   const [winner, setWinner] = useState(false);
+  const [loser, setLoser] = useState(false);
   const [guess, setGuess] = useState([]);
 
   //getRandom word every time screen is refreshed
@@ -38,7 +38,7 @@ const Board = () => {
     }
   }, []);
 
-  //play music 
+  //play victory music 
   useEffect(() => {
     if (winner) {
       const audio = new Audio("../../fulltime.mp3");
@@ -46,7 +46,17 @@ const Board = () => {
     }
   }, [winner]);
 
+  //play loser music
+  useEffect(() => {
+    if (loser) {
+      const audio = new Audio("../../womp.mp3");
+      audio.play();
+    }
+  }, [loser]);
 
+
+// after pressing enter on the 6'th row of the boxContents and winner is still false
+// set loser to true
 
   const handleEnter = (e, rowIndex, colIndex) => {
     if (winner) return;
@@ -73,6 +83,10 @@ const Board = () => {
 
         isCorrectLetter(currentGuess, randomWord);
         focusNextRow();
+
+        if (currentRow === numRows - 1 && !winner) {
+          setLoser(true);
+        }
       }
     }
   };
@@ -146,6 +160,7 @@ const Board = () => {
         <Celebration />
       </div>
       }
+      {loser && <Loss />}
     </div>
   );
 };
