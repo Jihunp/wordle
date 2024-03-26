@@ -118,12 +118,12 @@ const Board = () => {
 
   return (
     <div>
-      <h1 className="txt-color-black txt-center">Wordle</h1>
+      <h1 className="font-3vw mx-10 txt-color-black txt-center">Wordle</h1>
       {Array.from({length: numRows}).map((_, rowIndex) => (
         <div className="flex-container" key={rowIndex}>
           {Array.from({length: numCols}).map((_, colIndex) => (
             <div
-              className={`square border-box font-large `}
+              className={`square border-box `}
               key={colIndex}
               onKeyDown={(e) => handleEnter(e, rowIndex, colIndex)}
               ref={(el) => {
@@ -136,10 +136,13 @@ const Board = () => {
           ))}
         </div>
       ))}
-      <p>Current Row: {currentRow}</p>
+      {/* <p>Current Row: {currentRow}</p> */}
       <KeyBoard guess={guess} />
       {winner && 
-      <div>YOU WON</div>
+      <div className="winner-container">
+        <div>There is a good thing here</div>
+        YOU WON
+      </div>
       }
     </div>
   );

@@ -22,6 +22,7 @@
   padding: 20px; /* Adjust padding inside keys */
   border: 1px solid #ccc; /* Add border to keys */
   cursor: pointer;
+  border-radius:10%;
 }
 
 .font-small {
