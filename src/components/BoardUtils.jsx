@@ -5,6 +5,7 @@ export const isRowFilled = (boxContents, rowIndex) => {
   return isFilled;
 };
 
+
 export const getRandomWord = () => {
   const randomIndex = Math.floor(Math.random() * db.length);
   return db[randomIndex];

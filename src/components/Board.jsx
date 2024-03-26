@@ -18,6 +18,7 @@ const Board = () => {
   const [currentRow, setCurrentRow] = useState(0);
   const [finalizedRow, setFinalizedRow] = useState(Array(numRows).fill(false));
   const [randomWord, setRandomWord] = useState("");
+  const [winner, setWinner] = useState(false);
 
   useEffect(() => {
     const word = getRandomWord();
@@ -31,6 +32,8 @@ const Board = () => {
   }, []);
 
   const handleEnter = (e, rowIndex, colIndex) => {
+    if (winner) return;
+
     handleKeyPress(
       boxContents,
       setBoxContents,
@@ -82,6 +85,9 @@ const Board = () => {
         letterMapCounts[letter]--; // Reduce letter count
       }
     });
+    if(currentGuess === correctGuess) {
+      setWinner(true);
+    }
   };
 
   const focusNextRow = () => {
