@@ -7,6 +7,8 @@ import {
   getRandomWord,
 } from "./BoardUtils";
 
+import KeyBoard from "./KeyBoard";
+
 const initialBoxLetters = Array(6).fill(Array(5).fill(""));
 
 const Board = () => {
@@ -19,6 +21,11 @@ const Board = () => {
   const [finalizedRow, setFinalizedRow] = useState(Array(numRows).fill(false));
   const [randomWord, setRandomWord] = useState("");
   const [winner, setWinner] = useState(false);
+  const [guess, setGuess] = useState([]);
+
+  //make a useeffect hook
+  // if the guess state changes
+  // then send props
 
   useEffect(() => {
     const word = getRandomWord();
@@ -52,6 +59,7 @@ const Board = () => {
 
         const savedGuess = boxContents[currentRow];
         const currentGuess = savedGuess.join("").toLowerCase();
+        setGuess((prevGuesses) => [...prevGuesses, currentGuess]);
 
         isCorrectLetter(currentGuess, randomWord);
         focusNextRow();
@@ -85,7 +93,7 @@ const Board = () => {
         letterMapCounts[letter]--; // Reduce letter count
       }
     });
-    if(currentGuess === correctGuess) {
+    if (currentGuess === correctGuess) {
       setWinner(true);
     }
   };
@@ -122,6 +130,7 @@ const Board = () => {
         </div>
       ))}
       <p>Current Row: {currentRow}</p>
+      <KeyBoard guess={guess} />
     </div>
   );
 };

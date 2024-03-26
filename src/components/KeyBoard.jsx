@@ -1,18 +1,16 @@
-import { useState } from "react";
-import "./KeyBoard.css"
+import {useEffect, useState} from "react";
+import "./KeyBoard.css";
 
-const KeyBoard = () => {
-  const [keysPressed, setKeysPressed] = useState([]);
+const KeyBoard = ({ guess }) => {
+  // console.log(guess);
+  const [highlightedKeys, setHighlightedKeys] = useState(new Set());
 
   const keyBoardLayout = [
-    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-    ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Delete']
+    ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+    ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+    ["Enter", "Z", "X", "C", "V", "B", "N", "M", "Delete"],
   ];
-
-  const handlePress = (key) => {
-    setKeysPressed([...keysPressed, key])
-  };
+  console.log(guess);
 
   return (
     <div className="txt-center mx-top">
@@ -20,12 +18,7 @@ const KeyBoard = () => {
         {keyBoardLayout.map((row, rowIndex) => (
           <div key={rowIndex} className="keyboard-row ">
             {row.map((key, colIndex) => (
-              <div
-              key={colIndex}
-              className={`key ${keysPressed.includes(key) ? 'active' : 'not-active'}`}
-              onClick={() => handlePress(key)}
-              onKeyDown={() => handlePress(key)}
-              >
+              <div key={colIndex} className={`key bg-grey`}>
                 {key}
               </div>
             ))}
@@ -34,7 +27,6 @@ const KeyBoard = () => {
       </div>
     </div>
   );
-  
-}
+};
 
 export default KeyBoard;
