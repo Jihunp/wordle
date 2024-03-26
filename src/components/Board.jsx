@@ -7,6 +7,9 @@ import {
   getRandomWord,
 } from "./BoardUtils";
 
+
+import Confetti from 'react-confetti';
+import Celebration from "./Celebration";
 import KeyBoard from "./KeyBoard";
 
 const initialBoxLetters = Array(6).fill(Array(5).fill(""));
@@ -140,8 +143,7 @@ const Board = () => {
       <KeyBoard guess={guess} />
       {winner && 
       <div className="winner-container">
-        <div>There is a good thing here</div>
-        YOU WON
+        <Celebration />
       </div>
       }
     </div>

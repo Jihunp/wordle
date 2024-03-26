@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: white;
   text-align: center;
 }
 
@@ -60,18 +59,15 @@
 }
 
 .winner-container {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: white;
   text-align: center;
-  top: 10vw;
-  bottom: 10vw;
-  left: 10vw;
-  right: 10vw;
-  /* padding: auto;
-  margin: auto; */
-  background-color: red;
+  color: black;
 }
