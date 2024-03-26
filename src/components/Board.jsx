@@ -130,8 +130,6 @@ const Board = () => {
       if (nextInput) nextInput.focus();
     }
   };
-  console.log("the random word is");
-  console.log(randomWord);
 
   return (
     <div>
