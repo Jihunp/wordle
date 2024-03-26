@@ -13,7 +13,6 @@ const KeyBoard = ({ guess }) => {
       // Split the guess word into individual letters
       let formattedLetters = guessWord.toUpperCase();
       const letters = formattedLetters.split('');
-      console.log(letters);
       
       // Add each letter to the newHighlightedKeys Set
       letters.forEach(letter => {
@@ -25,21 +24,12 @@ const KeyBoard = ({ guess }) => {
     setHighlightedKeys(newHighlightedKeys);
   }, [guess]);
 
-  console.log(highlightedKeys)
-
   const keyBoardLayout = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
     ["Enter", "Z", "X", "C", "V", "B", "N", "M", "Delete"],
   ];
 
-  keyBoardLayout.forEach((row) => {
-    row.forEach(key => {
-      if(highlightedKeys.has(key)) {
-        console.log(`this letter should be highlighted ${key}`)
-      }
-    })
-  })
 
   return (
     <div className="txt-center mx-top">

@@ -23,10 +23,7 @@ const Board = () => {
   const [winner, setWinner] = useState(false);
   const [guess, setGuess] = useState([]);
 
-  //make a useeffect hook
-  // if the guess state changes
-  // then send props
-
+  //getRandom word every time screen is refreshed
   useEffect(() => {
     const word = getRandomWord();
     setRandomWord(word);
@@ -37,6 +34,16 @@ const Board = () => {
       inputRef.current[0][0].focus();
     }
   }, []);
+
+  //play music 
+  useEffect(() => {
+    if (winner) {
+      const audio = new Audio("../../fulltime.mp3");
+      audio.play();
+    }
+  }, [winner]);
+
+
 
   const handleEnter = (e, rowIndex, colIndex) => {
     if (winner) return;
@@ -131,6 +138,9 @@ const Board = () => {
       ))}
       <p>Current Row: {currentRow}</p>
       <KeyBoard guess={guess} />
+      {winner && 
+      <div>YOU WON</div>
+      }
     </div>
   );
 };

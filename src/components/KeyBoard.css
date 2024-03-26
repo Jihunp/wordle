@@ -19,7 +19,7 @@
 
 .key {
   margin: 5px; /* Adjust margin between keys */
-  padding: 40px; /* Adjust padding inside keys */
+  padding: 20px; /* Adjust padding inside keys */
   border: 1px solid #ccc; /* Add border to keys */
   cursor: pointer;
 }

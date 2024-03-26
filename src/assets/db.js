@@ -10,7 +10,6 @@ const db = [
   "horse",
   "table",
   "ghost",
-  "kiwi",
   "maple",
   "juice",
   "olive",
