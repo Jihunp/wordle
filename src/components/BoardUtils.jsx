@@ -1,6 +1,13 @@
+import db from "../assets/db"
+
 export const isRowFilled = (boxContents, rowIndex) => {
   const isFilled = boxContents[rowIndex].every((char) => char != "");
   return isFilled;
+};
+
+export const getRandomWord = () => {
+  const randomIndex = Math.floor(Math.random() * db.length);
+  return db[randomIndex];
 };
 
 export const isGuessCorrect = (currentGuess, correctGuess) => {

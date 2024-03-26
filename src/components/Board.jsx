@@ -1,6 +1,11 @@
 import {useState, useRef, useEffect} from "react";
 import "./Board.css";
-import {isRowFilled, handleKeyPress, countLetters} from "./BoardUtils";
+import {
+  isRowFilled,
+  handleKeyPress,
+  countLetters,
+  getRandomWord,
+} from "./BoardUtils";
 
 const initialBoxLetters = Array(6).fill(Array(5).fill(""));
 
@@ -12,6 +17,12 @@ const Board = () => {
   const [boxContents, setBoxContents] = useState(initialBoxLetters);
   const [currentRow, setCurrentRow] = useState(0);
   const [finalizedRow, setFinalizedRow] = useState(Array(numRows).fill(false));
+  const [randomWord, setRandomWord] = useState("");
+
+  useEffect(() => {
+    const word = getRandomWord();
+    setRandomWord(word);
+  }, []);
 
   useEffect(() => {
     if (inputRef.current[0] && inputRef.current[0][0]) {
@@ -39,23 +50,22 @@ const Board = () => {
         const savedGuess = boxContents[currentRow];
         const currentGuess = savedGuess.join("").toLowerCase();
 
-        isCorrectLetter(currentGuess)
+        isCorrectLetter(currentGuess, randomWord);
         focusNextRow();
       }
     }
   };
 
-  const isCorrectLetter = (currentGuess) => {
-
-    const correctGuess = "hello";
+  const isCorrectLetter = (currentGuess, randomWord) => {
+    const correctGuess = randomWord;
     const correctArray = [...correctGuess];
     const guessArray = [...currentGuess];
 
     const letterMapCounts = countLetters(correctGuess);
-    
+
     // Set to store correct positions
     const correctPositions = new Set();
-  
+
     // Iterate over guessArray to find correct positions and mark them as green
     guessArray.forEach((letter, i) => {
       if (correctArray[i] === letter) {
@@ -64,7 +74,7 @@ const Board = () => {
         letterMapCounts[letter]--; // if letter is considered green decrement letter count
       }
     });
-    
+
     // Iterate over guessArray to mark correct letters in wrong positions as yellow
     guessArray.forEach((letter, i) => {
       if (!correctPositions.has(i) && letterMapCounts[letter] > 0) {
@@ -72,7 +82,6 @@ const Board = () => {
         letterMapCounts[letter]--; // Reduce letter count
       }
     });
-    
   };
 
   const focusNextRow = () => {
@@ -83,6 +92,8 @@ const Board = () => {
       if (nextInput) nextInput.focus();
     }
   };
+  console.log("the random word is");
+  console.log(randomWord);
 
   return (
     <div>
